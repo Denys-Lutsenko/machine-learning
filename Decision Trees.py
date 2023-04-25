@@ -1,4 +1,4 @@
-"Practice #2 - Classification using Decision Trees"
+"""Practice #2 - Classification using Decision Trees"""
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -34,8 +34,8 @@ print(f"- Minimum Samples to Split: {model_restricted.min_samples_split}")
 print(f"- Minimum Samples to be Leaf: {model_restricted.min_samples_leaf}")
 
 
-def create_new_features(features_outer, axes_range):
-    # Create new features by applying a grid to the original features
+def create_new_features(axes_range):
+    """ Create new features by applying a grid to the original features """
     x1s = np.linspace(axes_range[0], axes_range[1], 100)
     x2s = np.linspace(axes_range[2], axes_range[3], 100)
     x1_grid, x2_grid = np.meshgrid(x1s, x2s)
@@ -44,8 +44,8 @@ def create_new_features(features_outer, axes_range):
 
 
 def plot_decision_boundary(clf, features_inner, labels_inner, axes_range, cmap):
-    # Plot the decision boundary of a classifier by using contour plots
-    new_features, x1_grid, x2_grid = create_new_features(features_inner, axes_range)
+    """ Plot the decision boundary of a classifier by using contour plots """
+    new_features, x1_grid, x2_grid = create_new_features(axes_range)
     y_pred = clf.predict(new_features).reshape(x1_grid.shape)
     plt.contourf(x1_grid, x2_grid, y_pred, alpha=0.3, cmap=cmap)
     plt.contour(x1_grid, x2_grid, y_pred, levels=[0.5], cmap="Greys", alpha=0.8)
