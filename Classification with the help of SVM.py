@@ -47,6 +47,7 @@ def plot_decision_regions(estimator, x_test, y_test, title=None):
              verticalalignment='bottom', horizontalalignment='right',
              transform=plt.gca().transAxes,
              color='black', fontsize=12)
+             
     # Add legend
     plt.legend(loc='upper right')
     if title:
