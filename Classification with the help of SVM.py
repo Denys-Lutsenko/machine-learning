@@ -1,4 +1,4 @@
-"""Project name: description"""
+"""Practice #1 - Classification using SVM"""
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -47,10 +47,8 @@ def plot_decision_regions(estimator, x_test, y_test, title=None):
              verticalalignment='bottom', horizontalalignment='right',
              transform=plt.gca().transAxes,
              color='black', fontsize=12)
-
     # Add legend
     plt.legend(loc='upper right')
-
     if title:
         plt.title(title)
     plt.show()
@@ -105,3 +103,36 @@ print('F1-score:', f1_rbf)
 plot_decision_regions(linear_model, x_train, y_train, title='Linear SVM with C=1.0')
 plot_decision_regions(poly_model, x_train, y_train, title='Polynomial SVM with degree=4 and C=1.0')
 plot_decision_regions(rbf_model, x_train, y_train, title='RBF SVM with gamma=2 and C=1.0')
+
+# Two examples of polynomial kernel parameters that may perform worse
+# Polynomial SVM with degree=1 and C=1.0
+poly_model_deg1 = svm.SVC(kernel='poly', degree=1, C=1.0)
+poly_model_deg1.fit(x_train, y_train)
+y_pred_poly_deg1 = poly_model_deg1.predict(x_train)
+accuracy_poly_deg1 = accuracy_score(y_train, y_pred_poly_deg1)
+precision_poly_deg1 = precision_score(y_train, y_pred_poly_deg1)
+recall_poly_deg1 = recall_score(y_train, y_pred_poly_deg1)
+f1_poly_deg1 = f1_score(y_train, y_pred_poly_deg1)
+print('Polynomial SVM with degree=1 and C=1.0:')
+print('Accuracy:', accuracy_poly_deg1)
+print('Precision:', precision_poly_deg1)
+print('Recall:', recall_poly_deg1)
+print('F1-score:', f1_poly_deg1)
+
+# Polynomial SVM with degree=10 and C=1.0
+poly_model_deg10 = svm.SVC(kernel='poly', degree=10, C=1.0)
+poly_model_deg10.fit(x_train, y_train)
+y_pred_poly_deg10 = poly_model_deg10.predict(x_train)
+accuracy_poly_deg10 = accuracy_score(y_train, y_pred_poly_deg10)
+precision_poly_deg10 = precision_score(y_train, y_pred_poly_deg10)
+recall_poly_deg10 = recall_score(y_train, y_pred_poly_deg10)
+f1_poly_deg10 = f1_score(y_train, y_pred_poly_deg10)
+print('Polynomial SVM with degree=10 and C=1.0:')
+print('Accuracy:', accuracy_poly_deg10)
+print('Precision:', precision_poly_deg10)
+print('Recall:', recall_poly_deg10)
+print('F1-score:', f1_poly_deg10)
+
+# Plot decision regions
+plot_decision_regions(poly_model_deg1, x_train, y_train, title='Polynomial SVM with degree=1 and C=1.0')
+plot_decision_regions(poly_model_deg10, x_train, y_train, title='Polynomial SVM with degree=10 and C=1.0')
