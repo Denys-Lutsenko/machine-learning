@@ -49,6 +49,9 @@ print("Sigmoid SVR Train R^2 Score: %.2f" % r2_score(y_test, pred_sig))
 
 
 def find_support_vectors(svm_model, x_data, y_data):
+    """
+    Finds the support vectors for a given SVM model.
+    """
     y_pred = svm_model.predict(x_data)
     epsilon = svm_model.epsilon
     off_margin = np.abs(y_data - y_pred) >= epsilon
@@ -56,6 +59,10 @@ def find_support_vectors(svm_model, x_data, y_data):
 
 
 def plot_svm_regression(svm_model, x_data, y_data, ax_limits):
+    """
+    This function plots the support vector regression results 
+    of an SVM model along with the predicted values and the margin of error.
+    """
     x_vals = np.linspace(ax_limits[0], ax_limits[1], 100).reshape(100, 1)
     y_pred = svm_model.predict(x_vals)
     svm_est = svm_model.named_steps['svr']
